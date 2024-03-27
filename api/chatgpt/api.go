@@ -57,15 +57,24 @@ func CreateConversation(c *gin.Context) {
 	}
 	chat_require := CheckRequire(authHeader)
 
-	if chat_require.Arkose.Required == true && request.ArkoseToken == "" {
-		arkoseToken, err := api.GetArkoseToken(api_version)
-		if err != nil || arkoseToken == "" {
-			c.AbortWithStatusJSON(http.StatusForbidden, api.ReturnMessage(err.Error()))
-			return
-		}
+	// if chat_require.Arkose.Required == true && request.ArkoseToken == "" {
+	// 	arkoseToken, err := api.GetArkoseToken(api_version)
+	// 	if err != nil || arkoseToken == "" {
+	// 		c.AbortWithStatusJSON(http.StatusForbidden, api.ReturnMessage(err.Error()))
+	// 		return
+	// 	}
 
-		request.ArkoseToken = arkoseToken
+	// 	request.ArkoseToken = arkoseToken
+	// }
+
+	arkoseToken, err := api.GetArkoseToken(api_version)
+	if err != nil || arkoseToken == "" {
+		c.AbortWithStatusJSON(http.StatusForbidden, api.ReturnMessage(err.Error()))
+		return
 	}
+
+	request.ArkoseToken = arkoseToken
+
 
 	resp, done := sendConversationRequest(c, request, chat_require.Token)
 	if done {
