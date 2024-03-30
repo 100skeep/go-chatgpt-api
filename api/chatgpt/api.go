@@ -7,13 +7,10 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
+	"github.com/gorilla/websocket"
 	"io"
 	"log"
 	http2 "net/http"
-
-	"github.com/gorilla/websocket"
-	"github.com/linweiyuan/go-logger/logger"
-
 	//"net/url"
 	"strings"
 	"time"
@@ -22,6 +19,7 @@ import (
 	"github.com/gin-gonic/gin"
 
 	"github.com/maxduke/go-chatgpt-api/api"
+	"github.com/linweiyuan/go-logger/logger"
 )
 
 func CreateConversation(c *gin.Context) {
