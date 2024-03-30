@@ -12,6 +12,7 @@ import (
 	http2 "net/http"
 
 	"github.com/gorilla/websocket"
+	"github.com/linweiyuan/go-logger/logger"
 
 	//"net/url"
 	"strings"
@@ -125,7 +126,7 @@ func sendConversationRequest(c *gin.Context, request CreateConversationRequest, 
 		// 直接转发响应体
 		body, err := io.ReadAll(resp.Body)
 		if err != nil {
-			loggger.Error(fmt.Sprintf("Could not read response body: %v\n", err.Error()))
+			logger.Error(err.Error())
 		}
 
 		c.Writer.Write(body)
