@@ -74,8 +74,7 @@ func CreateConversation(c *gin.Context) {
 	// 	c.AbortWithStatusJSON(http.StatusForbidden, api.ReturnMessage(err.Error()))
 	// 	return
 	// }
-
-	request.ArkoseToken = arkoseToken
+	// request.ArkoseToken = arkoseToken
 
 	resp, done := sendConversationRequest(c, request, chat_require.Token)
 	if done {
